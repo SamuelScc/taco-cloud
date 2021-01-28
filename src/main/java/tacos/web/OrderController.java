@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 import tacos.Order;
 
+import javax.validation.Valid;
+
 @Slf4j
 @Controller
 @RequestMapping("/orders")
@@ -38,7 +40,7 @@ public class OrderController {
 
     //tag::handlePostWithValidation[]
     @PostMapping
-    public String processOrder(Order order, Errors errors) {
+    public String processOrder(@Valid Order order, Errors errors) {
         if (errors.hasErrors()) {
             return "orderForm";
         }
